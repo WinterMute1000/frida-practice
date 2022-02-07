@@ -23,11 +23,19 @@ function decryptCode(){
 
     console.log(arrayOfByte.toString());
 }
+
+function hookCheckFunction(){
+    Java.use('sg.vantagepoint.uncrackable1.a').a.overload('java.lang.String').implementation=(a)=>{
+        return true;
+    };
+
+}
 if(Java.available){
     Java.perform(function(){
         try{
             byPassRoot();
             decryptCode();
+            hookCheckFunction();
         }
         catch(error){
             console.log("[-] An exception occured");
