@@ -24,18 +24,23 @@ function decryptCode(){
     console.log(arrayOfByte.toString());
 }
 
-function hookCheckFunction(){
+/*function hookCheckFunction(){
     Java.use('sg.vantagepoint.uncrackable1.a').a.overload('java.lang.String').implementation=(a)=>{
         return true;
     };
 
+}*/
+function bypassDebugCheck(){
+    var sgVantagepointAB = Java.use('sg.vantagepoint.a.b');
+    sgVantagepointAB.a.overload('android.content.Context').implementation = (context) => {return false;}
 }
 if(Java.available){
     Java.perform(function(){
         try{
             byPassRoot();
+            bypassDebugCheck();
             decryptCode();
-            hookCheckFunction();
+            // hookCheckFunction();
         }
         catch(error){
             console.log("[-] An exception occured");
